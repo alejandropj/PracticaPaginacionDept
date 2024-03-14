@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Departamentos";
+}
+
+@model Empleado
+
+@{
+    Departamento departamento =
+            ViewData["DEPARTAMENTOSELECCIONADO"] as Departamento;
+}
+
+<h1>Departamentos</h1>
+<p>
+    <a asp-controller="Departamento"
+       asp-action="Departamentos">
+        Volver a departamentos
+    </a>
+</p>
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-danger">
+        Id Departamento: @departamento.IdDepartamento
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Nombre: @departamento.Nombre
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Localidad: @departamento.Localidad
+    </li>
+</ul>
+
+<hr />
+<div id="partialEmpleados"></div>
+
+@section Scripts {
+    <script>
+        function loadEmpleadoPaginacion(posicion) {
+            $(document).ready(function () {
+                $("#partialEmpleados").load("/Departamento/_PaginacionPartial?posicion="
+                    + posicion + "&iddepartamento=" + @departamento.IdDepartamento);
+            });
+        }
+
+        loadEmpleadoPaginacion(1);
+    </script>
+}
+

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "_PaginacionPartial";
+}
+
+@model Empleado
+
+@{
+    Departamento departamento =
+            ViewData["DEPARTAMENTOSELECCIONADO"] as Departamento;
+}
+<h3 class="mt-3">@ViewData["POSICION"] de @ViewData["ULTIMO"]</h3>
+
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(1)" id="primero">
+            Primero
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(@ViewData["ANTERIOR"])" id="anterior">
+            Anterior
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(@ViewData["SIGUIENTE"])" id="siguiente">
+            Siguiente
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(@ViewData["ULTIMO"])" id="ultimo">
+            Ultimo
+        </button>
+    </li>
+</ul>
+
+<ul class="list-group" id="detalleempleado">
+    <li class="list-group-item list-group-item-info">
+        Id Empleado: @Model.IdEmpleado
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Apellido: @Model.Apellido
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Oficio: @Model.Oficio
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Salario: @Model.Salario
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Departamento: @Model.IdDepartamento
+    </li>
+</ul>
+
